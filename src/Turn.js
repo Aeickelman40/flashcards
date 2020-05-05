@@ -20,6 +20,10 @@ class Turn {
     }
   }
 
+  evaluateGuess() {
+     return this.guess === this.card.correctAnswer ? true : false
+  }
+
   giveFeedback() {
     if (this.evaluateGuess() === true) {
         return 'correct!'

@@ -25,7 +25,7 @@ describe('Deck', function () {
         expect(deck.cards[1]).to.equal(card2);
     })
 
-    it.only('should be able to count the cards within the deck', function () {
+    it('should be able to count the cards within the deck', function () {
         const card1 = new Card(1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
         const card2 = new Card(2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array"); 
         const deck = new Deck([card1]);

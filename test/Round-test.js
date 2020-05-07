@@ -5,6 +5,7 @@ const Card = require('../src/Card');
 const Turn = require('../src/Turn');
 const Deck = require('../src/Deck');
 const Round = require('../src/Round');
+const Game = require('../src/Game');
 
 describe('Round', function() {
   it('should be a function', function() {
@@ -79,13 +80,14 @@ describe('Round', function() {
       expect(round.calculatePercentCorrect()).to.equal(50);
     })
 
-    it('should print ** Round over! ** You answered dynamic amount % of the questions correctly! at the end of a round', function() {
+    it('should print a dynamic message informing the user that the round is over, their percentage correct, and time', function() {
       const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
       const deck = new Deck([card]);
       const round = new Round(deck);
 
       round.takeTurn("object")
-      expect(round.endRound()).to.equal(`** Round over! ** You answered ${round.calculatePercentCorrect()}% of the questions correctly!`)
+      let time = round.getTime(20000, 40000);
+      expect(round.endRound(time)).to.equal(`** Round over! ** You answered ${round.calculatePercentCorrect()}% of the questions correctly! It took you 20 seconds!`)
     })
 
 });

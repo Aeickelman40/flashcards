@@ -28,11 +28,18 @@ class Round {
     return Math.floor(((this.turns - this.incorrectGuesses.length) / this.turns) * 100);
   }
 
-  endRound() {
-    let endMessage = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`
-    console.log(endMessage);
-    return endMessage;
+  getTime(startTime, endTime) {
+    let difference = endTime - startTime;
+    let gameTime = Math.floor(difference / 1000);
+    return gameTime;
   }
-}
+
+  endRound(time) {
+    let endMessage = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly! It took you ${time} seconds!`
+    console.log(endMessage)
+    return endMessage
+  }
+  }
+
 
 module.exports = Round

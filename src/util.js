@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+let startTime = Date.now()
 
 const genList = (round) => {
   let card = round.returnCurrentCard();
@@ -36,7 +37,9 @@ async function main(round) {
   const getConfirm = await inquirer.prompt(confirmUpdate(getAnswer.answers, round));
 
     if(!round.returnCurrentCard()) {
-      round.endRound();
+      let endTime = Date.now()
+      let time = round.getTime(startTime, endTime)
+      round.endRound(time);
     } else {
       main(round);
     }

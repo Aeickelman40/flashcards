@@ -10,7 +10,6 @@ const protoTypeQuestions = require('../src/data')
 
 describe('Game', function() {
   it('should be a function', function() {
-    const game = new Game() ;
     expect(Game).to.be.a('function')
   })
 
@@ -23,7 +22,7 @@ describe('Game', function() {
     const cards = protoTypeQuestions.prototypeData
     const deck = new Deck(cards);  
     const round = new Round(deck);
-    const game = new Game();
+    const game = new Game(round);
     game.start();
     expect(deck.cards.length).to.equal(30);
   })

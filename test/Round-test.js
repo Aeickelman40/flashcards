@@ -2,16 +2,11 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Card = require('../src/Card');
-const Turn = require('../src/Turn');
 const Deck = require('../src/Deck');
 const Round = require('../src/Round');
-const Game = require('../src/Game');
 
 describe('Round', function() {
   it('should be a function', function() {
-    const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
-    const deck = new Deck(card)
-    const round = new Round(deck);
     expect(Round).to.be.a('function');
   });
 
@@ -51,44 +46,44 @@ describe('Round', function() {
     expect(round.turns).to.equal(2);
   });
 
-    it('should add to the incorrectGuesses array if the guess is INCORRECT', function() {
-      const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
-      const deck = new Deck([card]);
-      const round = new Round(deck);
+  it('should add to the incorrectGuesses array if the guess is INCORRECT', function() {
+    const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const deck = new Deck([card]);
+    const round = new Round(deck);
 
-      round.takeTurn("array");
-      expect(round.incorrectGuesses).to.deep.equal([card])
-    })
+    round.takeTurn("array");
+    expect(round.incorrectGuesses).to.deep.equal([card])
+  })
 
-    it('should NOT add to the incorrectGuesses array if the guess is CORRECT', function() {
-      const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
-      const deck = new Deck([card]);
-      const round = new Round(deck);
+  it('should NOT add to the incorrectGuesses array if the guess is CORRECT', function() {
+    const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const deck = new Deck([card]);
+    const round = new Round(deck);
 
-      round.takeTurn("object");
-      expect(round.incorrectGuesses.length).to.equal(0)
-    })
+    round.takeTurn("object");
+    expect(round.incorrectGuesses.length).to.equal(0)
+  })
 
-    it('should calculate the percentage of correct answers', function() {
-      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
-      const card2 = new Card(2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
-      const deck = new Deck([card1, card2]);
-      const round = new Round(deck);
+  it('should calculate the percentage of correct answers', function() {
+    const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const card2 = new Card(2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+    const deck = new Deck([card1, card2]);
+    const round = new Round(deck);
 
-      round.takeTurn("object");
-      round.takeTurn("function");
-      expect(round.calculatePercentCorrect()).to.equal(50);
-    })
+    round.takeTurn("object");
+    round.takeTurn("function");
+    expect(round.calculatePercentCorrect()).to.equal(50);
+  })
 
-    it('should print a dynamic message informing the user that the round is over, their percentage correct, and time', function() {
-      const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
-      const deck = new Deck([card]);
-      const round = new Round(deck);
+  it('should print a dynamic message informing the user that the round is over, their percentage correct, and time', function() {
+    const card = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const deck = new Deck([card]);
+    const round = new Round(deck);
 
-      round.takeTurn("object")
-      let time = round.getTime(20000, 40000);
-      expect(round.endRound(time)).to.equal(`** Round over! ** You answered ${round.calculatePercentCorrect()}% of the questions correctly! It took you 20 seconds!`)
-    })
+    round.takeTurn("object")
+    let time = round.getTime(20000, 40000);
+    expect(round.endRound(time)).to.equal(`** Round over! ** You answered ${round.calculatePercentCorrect()}% of the questions correctly! It took you 20 seconds!`)
+  })
 
 });
 

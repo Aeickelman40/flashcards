@@ -10,6 +10,16 @@ The Flash Cards project is a solo project for Front End Module 2 students at the
 
 To install and view, run the following commands in your terminal:
 ```
-git clone 
+git clone git@github.com:Aeickelman40/flashcards.git
 ```
 cd into the cloned repository
+```
+npm install
+```
+You're in!!! Now to begin playing the game run the following command in the terminal
+```
+node index.js
+```
+
+## In Action
+
